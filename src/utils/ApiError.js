@@ -8,12 +8,12 @@ class ApiError extends Error {
         super(messsage);
         this.statusCode = statusCode;
         this.errors = errors;
-        this.statck = statck;
+        this.stack = stack;
         this.success = false;
         this.data = null;
 
-        if (statck){
-        this.statck = statck;
+        if (stack){
+        this.stack = stack;
         }
 
         else{

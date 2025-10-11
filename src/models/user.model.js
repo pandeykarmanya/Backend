@@ -1,6 +1,7 @@
 import mongoose, {Schema} from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import {upload} from "../middlewares/multer.middleware.js";
 
 const userSchema = new Schema({
     username: {
