@@ -1,7 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import {upload} from "../middlewares/multer.middleware.js";
+import bcrypt from "bcrypt";
 
 const userSchema = new Schema({
     username: {
@@ -25,13 +24,14 @@ const userSchema = new Schema({
         trim: true,
         index: true
     },
-    avatar: {
+    /* avatar: {
         type: String, // cloudinary
         required: true, 
     },
     coverImage: {
         type: String, // cloudinary
     },
+    */
     password: {
         type: String, 
         required: [true, 'Password is required'], 
@@ -55,7 +55,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
   return await bcrypt.compare(password, this.password)
 }
 
-userSchema.method.genrerateAccessToken = function() {
+userSchema.methods.generateAccessToken = function() {
     return jwt.sign(
         {
         _id: this._id,
@@ -70,7 +70,7 @@ userSchema.method.genrerateAccessToken = function() {
     )
 }
 
-userSchema.method.genrerateRefreshToken = function() {
+userSchema.methods.generateRefreshToken = function() {
     return jwt.sign(
         {
         _id: this._id,
